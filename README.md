@@ -16,7 +16,11 @@ cd phased-array
 python generate_lists.py
 ```
 
-You can customise the input directory, output file pathname, and the line prefix via the command-line. You can also set which [categories](https://github.com/duckduckgo/tracker-radar/blob/master/docs/CATEGORIES.md) you would like to exclude from the list (see `--help` for a full list):
+You can customise the input directory, output file pathname, and the line prefix via the command-line.
+
+You will likely also want to pick which [categories](https://github.com/duckduckgo/tracker-radar/blob/master/docs/CATEGORIES.md) you want to exclude from the list (see Limitations / Warnings below).
+
+Setting a `--line-prefix` can be used to generate a `hosts` formatted list.
 
 ```bash
 python generate_lists.py \
@@ -28,6 +32,8 @@ python generate_lists.py \
     --exclude-category 'Embedded Content' \
     --exclude-category 'Federated Login'
 ```
+
+See `--help` for a full list of configuration options.
 
 ## Limitations / Warnings
 
