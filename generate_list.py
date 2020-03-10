@@ -7,12 +7,12 @@ line_prefix = '127.0.0.1	'
 intro_text = """
 # # PHASED ARRAY
 #
-# A privacy-focessed list of tracker domains that have been identified by
+# A privacy-focussed list of tracker domains that have been identified by
 # DuckDuckGo's Tracker Radar for use in ad blocker solutions like pi-hole.
 #
 # At present this is a particularly blunt tool, blocking entire domains,
 # rather than individual trackers. This may result in 'undesirable
-# behaviour,' i.e. your favourite website/app may stop working.
+# behaviour', i.e. your favourite website/app may stop working.
 #
 # Project website:
 #
@@ -45,7 +45,7 @@ for entry in file_list:
 
 file_list.close()
 
-print ("Files   : " +str(file_count))
+print ("Files   : " + str(file_count))
 print ("Writing : " + output_file)
 
 out = open(output_file, "w")
