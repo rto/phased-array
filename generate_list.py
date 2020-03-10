@@ -6,12 +6,12 @@ import os
 INTRO_TEXT = """
 # # PHASED ARRAY
 #
-# A privacy-focessed list of tracker domains that have been identified by
+# A privacy-focussed list of tracker domains that have been identified by
 # DuckDuckGo's Tracker Radar for use in ad blocker solutions like pi-hole.
 #
 # At present this is a particularly blunt tool, blocking entire domains,
 # rather than individual trackers. This may result in 'undesirable
-# behaviour,' i.e. your favourite website/app may stop working.
+# behaviour', i.e. your favourite website/app may stop working.
 #
 # Project website:
 #
@@ -74,7 +74,6 @@ def main():
     output_file.close()
 
     print(f"Wrote {file_count} domains to {args.output_pathname}")
-
 
 if __name__ == "__main__":
     main()
