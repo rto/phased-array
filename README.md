@@ -8,7 +8,7 @@ A script that generates a privacy-focussed list of tracker domains that have bee
 
 `python generate_lists.py`
 
-You can customize a few things by editing the variables at the top of **generate_lists.py**:
+You can customise a few things by editing the variables at the top of **generate_lists.py**:
 
  - *input_directory* tells the script where to look for the .json files from the domains directory of the source data. (Default: 'tracker-radar/domains/')
  - *output_file* specifies where the output should be written to. (Default: 'phased_array_hosts.txt')
