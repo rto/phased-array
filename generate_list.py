@@ -1,10 +1,9 @@
-import os
+import argparse
 import json
+import os
 
-input_directory = 'tracker-radar/domains/'
-output_file = 'phased_array_hosts.txt'
-line_prefix = '127.0.0.1	'
-intro_text = """
+
+INTRO_TEXT = """
 # # PHASED ARRAY
 #
 # A privacy-focessed list of tracker domains that have been identified by
@@ -29,28 +28,53 @@ intro_text = """
 
 """
 
-output_buffer = ''
-file_count = 0
-domain_count = 0
 
-file_list = os.scandir(input_directory)
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Produce a hosts file from DuckDuckGo's Tracker Radar"
+    )
+    parser.add_argument(
+        "--input-directory", "-i",
+        # type=str,
+        help="Path to a directory containing Tracker Radar files",
+        default="tracker-radar/domains",
+    )
+    parser.add_argument(
+        "--output-pathname", "-o",
+        help="Pathname of a file to write to",
+        default="phased_array_hosts.txt"
+    )
+    parser.add_argument(
+        "--line-prefix", "-l",
+        help="Prefix for each line in the output file",
+        default="127.0.0.1\t",
+    )
+    return parser.parse_args()
 
-for entry in file_list:
-	if (entry.path.endswith(".json") and entry.is_file()):
-		file_count += 1
-		print("Parsing : " + entry.path)
-		data = json.load(open(entry.path, 'r'))
-		print("Adding  : " + data['domain'])
-		output_buffer += line_prefix + data['domain'] + '\n'
 
-file_list.close()
+def main():
+    args = parse_args()
 
-print ("Files   : " +str(file_count))
-print ("Writing : " + output_file)
+    file_count = 0
 
-out = open(output_file, "w")
-out.write(intro_text)
-out.write(output_buffer)
-out.close()
+    output_file = open(args.output_pathname, "w")
+    output_file.write(INTRO_TEXT)
 
-print ("DONE!")
+    file_list = os.scandir(args.input_directory)
+
+    for entry in file_list:
+        if not entry.is_file() or not entry.path.endswith(".json"):
+            continue
+        file_count += 1
+        data = json.load(open(entry.path, "r"))
+        print("Adding: " + data["domain"])
+        output_file.write(args.line_prefix + data["domain"] + "\n")
+
+    file_list.close()
+    output_file.close()
+
+    print(f"Wrote {file_count} domains to {args.output_pathname}")
+
+
+if __name__ == "__main__":
+    main()
