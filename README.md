@@ -4,7 +4,7 @@
 
 A script that generates a privacy-focussed list of tracker domains that have been identified by [DuckDuckGo's Tracker Radar](https://spreadprivacy.com/duckduckgo-tracker-radar/) for use in ad blocker solutions like pi-hole.
 
-## Requirements?
+## Requirements
 
 This script requires Python >= 3.6.
 
@@ -16,22 +16,29 @@ cd phased-array
 python generate_lists.py
 ```
 
-You can customise the input directory, output file pathname, and the line prefix via the command-line (see `--help` for a full list):
+You can customise the input directory, output file pathname, and the line prefix via the command-line. You can also set which [categories](https://github.com/duckduckgo/tracker-radar/blob/master/docs/CATEGORIES.md) you would like to exclude from the list (see `--help` for a full list):
 
 ```bash
-python generate_lists.py --input-directory my-tracker/domains --output-pathname /path/to/my-output.txt --line-prefix '203.0.113.1 '
+python generate_lists.py --input-directory my-tracker/domains --output-pathname /path/to/my-output.txt --line-prefix '127.0.0.1 ' --exclude-categories 'CDN,Embedded Content,Federated Login,Non-tracking,Online Payment,SSO'
 ```
 
 ## Limitations / Warnings
 
-At present this is a particularly blunt tool, blocking entire domains, rather than individual trackers. This may result in 'undesirable behaviour', i.e. your favourite website/app may stop working.
+_Striking a balance between privacy and usability is tough!_
 
-**For example, github.com will be blocked by default.**
+Blocking by domain name can be a particularly blunt tool. By default the Tracker Radar includes domains for many popular websites and apps that you may wish to use on a daily basis. If you do not set any _exclude categories_ then your results in 'undesirable behaviour', i.e. your favourite website/app may stop working.
+
+**For example, github.com, google.com, paypal.com, etc would all be blocked if we included every single domain.**
+
+By default we have chosen to exclude any domain that matches one or more of the following categories: CDN, Embedded Content, Federated Login, Non-tracking, Online Payment, SSO.
+
+Depending on your personal preference or concerns you may wish to filter on different [categories](https://github.com/duckduckgo/tracker-radar/blob/master/docs/CATEGORIES.md).
+
 
 ## Future improvements
 
  - Generate different types of output (domains, hosts, regex)
- - Allow a threshold to be set for inclusion
+ - Improve the way that we filter domains in or out of the list
 
 Any help on these gratefully received! :-)
 
