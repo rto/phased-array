@@ -110,8 +110,8 @@ def main():
     output_file.close()
 
     print(
-        f"Added {domains_included}/{file_count} "
-        f"domains to {args.output_pathname}"
+        f"Added {domains_included} domains from {file_count} files "
+        f"to {args.output_pathname}"
     )
 
 if __name__ == "__main__":
