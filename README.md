@@ -10,7 +10,7 @@ A script that generates a privacy-focessed list of tracker domains that have bee
 
 You can customize a few things by editing the variables at the top of **generate_lists.py**:
 
- - *input_directory* tells the script where to look for the .json files from the domains directory of the source data. (Default: 'input/')
+ - *input_directory* tells the script where to look for the .json files from the domains directory of the source data. (Default: 'tracker-radar/domains/')
  - *output_file* specifies where the output should be written to. (Default: 'phased_array_hosts.txt')
  - *line_prefix* is added to each line before the domain. (Default: '127.0.0.1	')
  - *intro_text* appears in the output file above the block list.
@@ -30,4 +30,3 @@ Any help on these gratefully received! :-)
 ## Source data
 
 This project makes use of the Tracker Radar data from DuckDuckGo is [licensed](https://raw.githubusercontent.com/duckduckgo/tracker-radar/master/LICENSE) under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
-

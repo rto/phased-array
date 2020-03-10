@@ -1,7 +1,7 @@
 import os
 import json
 
-input_directory = 'input/'
+input_directory = 'tracker-radar/domains/'
 output_file = 'phased_array_hosts.txt'
 line_prefix = '127.0.0.1	'
 intro_text = """
