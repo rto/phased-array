@@ -51,12 +51,12 @@ def parse_args():
     parser.add_argument(
         "--output-pathname", "-o",
         help="Pathname of a file to write to",
-        default="phased_array_hosts.txt"
+        default="phased_array_blocklist.txt"
     )
     parser.add_argument(
         "--line-prefix", "-l",
-        help="Prefix for each line in the output file",
-        default="127.0.0.1\t",
+        help="Prefix for each entry in the output file",
+        default="",
     )
     parser.add_argument(
         "--exclude-uncategorized", "-u",
