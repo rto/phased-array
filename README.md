@@ -4,16 +4,23 @@
 
 A script that generates a privacy-focussed list of tracker domains that have been identified by [DuckDuckGo's Tracker Radar](https://spreadprivacy.com/duckduckgo-tracker-radar/) for use in ad blocker solutions like pi-hole.
 
+## Requirements?
+
+This script requires Python >= 3.6.
+
 ## How?
 
-`python generate_lists.py`
+```bash
+git clone --recurse-submodules https://github.com/rto/phased-array.git phased-array
+cd phased-array
+python generate_lists.py
+```
 
-You can customize a few things by editing the variables at the top of **generate_lists.py**:
+You can customise the input directory, output file pathname, and the line prefix via the command-line (see `--help` for a full list):
 
- - *input_directory* tells the script where to look for the .json files from the domains directory of the source data. (Default: 'tracker-radar/domains/')
- - *output_file* specifies where the output should be written to. (Default: 'phased_array_hosts.txt')
- - *line_prefix* is added to each line before the domain. (Default: '127.0.0.1	')
- - *intro_text* appears in the output file above the block list.
+```bash
+python generate_lists.py --input-directory my-tracker/domains --output-pathname /path/to/my-output.txt --line-prefix '203.0.113.1 '
+```
 
 ## Limitations / Warnings
 
