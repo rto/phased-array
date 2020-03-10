@@ -26,7 +26,7 @@ python generate_lists.py --input-directory my-tracker/domains --output-pathname 
 
 _Striking a balance between privacy and usability is tough!_
 
-Blocking by domain name can be a particularly blunt tool. By default the Tracker Radar includes domains for many popular websites and apps that you may wish to use on a daily basis. If you do not set any _exclude categories_ then your results in 'undesirable behaviour', i.e. your favourite website/app may stop working.
+Blocking by domain name can be a particularly blunt tool. By default the Tracker Radar includes domains for many popular websites and apps that you may wish to use on a daily basis. If you do not set any _exclude categories_ then your output may result in 'undesirable behaviour', i.e. your favourite website/app may stop working.
 
 **For example, github.com, google.com, paypal.com, etc would all be blocked if we included every single domain.**
 
