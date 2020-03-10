@@ -49,6 +49,12 @@ def parse_args():
         help="Prefix for each line in the output file",
         default="127.0.0.1\t",
     )
+
+    parser.add_argument(
+        "--exclude-categories", "-e",
+        help="Domains matching one or more of these categories will be skipped",
+        default="CDN,Embedded Content,Federated Login,Non-tracking,Online Payment,SSO"
+    )
     return parser.parse_args()
 
 
@@ -56,6 +62,8 @@ def main():
     args = parse_args()
 
     file_count = 0
+    domain_count_inc = 0
+    domain_count_exc = 0
 
     output_file = open(args.output_pathname, "w")
     output_file.write(INTRO_TEXT)
@@ -67,13 +75,19 @@ def main():
             continue
         file_count += 1
         data = json.load(open(entry.path, "r"))
-        print("Adding: " + data["domain"])
-        output_file.write(args.line_prefix + data["domain"] + "\n")
+        category_match = set(data['categories']).intersection(args.exclude_categories.split(","))
+        if len(category_match) == 0:
+            domain_count_inc += 1
+            print("Adding: " + data["domain"])
+            output_file.write(args.line_prefix + data["domain"] + "\n")
+        else:
+            domain_count_exc +=1
+            print("Skipping: " + data['domain'])
 
     file_list.close()
     output_file.close()
 
-    print(f"Wrote {file_count} domains to {args.output_pathname}")
+    print(f"Parsed {file_count} files and added {domain_count_inc}/{domain_count_inc+domain_count_exc} domains to {args.output_pathname}")
 
 if __name__ == "__main__":
     main()
