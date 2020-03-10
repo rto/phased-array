@@ -2,11 +2,11 @@
 
 ## What?
 
-A script that generates a privacy-focessed list of tracker domains that have been identified by [DuckDuckGo's Tracker Radar](https://spreadprivacy.com/duckduckgo-tracker-radar/) for use in ad blocker solutions like pi-hole.
+A script that generates a privacy-focussed list of tracker domains that have been identified by [DuckDuckGo's Tracker Radar](https://spreadprivacy.com/duckduckgo-tracker-radar/) for use in ad blocker solutions like pi-hole.
 
 ## How?
 
-`pyhton3 generate_lists.py`
+`python generate_lists.py`
 
 You can customize a few things by editing the variables at the top of **generate_lists.py**:
 
@@ -17,8 +17,7 @@ You can customize a few things by editing the variables at the top of **generate
 
 ## Limitations / Warnings
 
-At present this is a particularly blunt tool, blocking entire domains,
-rather than individual trackers. This may result in 'undesirable behaviour,' i.e. your favourite website/app may stop working.
+At present this is a particularly blunt tool, blocking entire domains, rather than individual trackers. This may result in 'undesirable behaviour', i.e. your favourite website/app may stop working.
 
 **For example, github.com will be blocked by default.**
 
