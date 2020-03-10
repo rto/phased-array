@@ -19,7 +19,14 @@ python generate_lists.py
 You can customise the input directory, output file pathname, and the line prefix via the command-line. You can also set which [categories](https://github.com/duckduckgo/tracker-radar/blob/master/docs/CATEGORIES.md) you would like to exclude from the list (see `--help` for a full list):
 
 ```bash
-python generate_lists.py --input-directory my-tracker/domains --output-pathname /path/to/my-output.txt --line-prefix '127.0.0.1 ' --exclude-categories 'CDN,Embedded Content,Federated Login,Non-tracking,Online Payment,SSO'
+python generate_lists.py \
+    --input-directory my-tracker/domains \
+    --output-pathname /path/to/my-output.txt \
+    --line-prefix '127.0.0.1 ' \
+    --exclude-uncategorized \
+    --exclude-category CDN \
+    --exclude-category 'Embedded Content' \
+    --exclude-category 'Federated Login'
 ```
 
 ## Limitations / Warnings
