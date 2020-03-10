@@ -20,6 +20,8 @@ You can customize a few things by editing the variables at the top of **generate
 At present this is a particularly blunt tool, blocking entire domains,
 rather than individual trackers. This may result in 'undesirable behaviour,' i.e. your favourite website/app may stop working.
 
+**For example, github.com will be blocked by default.**
+
 ## Future improvements
 
  - Generate different types of output (domains, hosts, regex)
