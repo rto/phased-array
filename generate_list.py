@@ -28,6 +28,15 @@ INTRO_TEXT = """
 
 """
 
+DEFAULT_EXCLUDED_CATEGORIES = (
+    "CDN",
+    "Embedded Content",
+    "Federated Login",
+    "Non-tracking",
+    "Online Payment",
+    "SSO",
+)
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -49,11 +58,18 @@ def parse_args():
         help="Prefix for each line in the output file",
         default="127.0.0.1\t",
     )
-
     parser.add_argument(
-        "--exclude-categories", "-e",
+        "--exclude-uncategorized", "-u",
+        action="store_true",
+        help="Exclude uncategorized domains",
+        default=False,
+    )
+    parser.add_argument(
+        "--exclude-category", "-e",
+        dest="exclude_categories",
+        action="append",
         help="Domains matching one or more of these categories will be skipped",
-        default="CDN,Embedded Content,Federated Login,Non-tracking,Online Payment,SSO"
+        default=None,
     )
     return parser.parse_args()
 
@@ -62,8 +78,11 @@ def main():
     args = parse_args()
 
     file_count = 0
-    domain_count_inc = 0
-    domain_count_exc = 0
+    domains_included = 0
+    excluded_categories = set(
+        args.exclude_categories or
+        DEFAULT_EXCLUDED_CATEGORIES
+    )
 
     output_file = open(args.output_pathname, "w")
     output_file.write(INTRO_TEXT)
@@ -75,19 +94,25 @@ def main():
             continue
         file_count += 1
         data = json.load(open(entry.path, "r"))
-        category_match = set(data['categories']).intersection(args.exclude_categories.split(","))
-        if len(category_match) == 0:
-            domain_count_inc += 1
-            print("Adding: " + data["domain"])
-            output_file.write(args.line_prefix + data["domain"] + "\n")
-        else:
-            domain_count_exc +=1
-            print("Skipping: " + data['domain'])
+        domain = data["domain"]
+        categories = set(data["categories"])
+        if (
+            (not categories and args.exclude_uncategorized) or
+            (categories and categories & excluded_categories)
+        ):
+            print(f"Skipping: {domain}")
+            continue
+        domains_included += 1
+        print(f"Adding: {domain}")
+        output_file.write(f"{args.line_prefix}{domain}\n")
 
     file_list.close()
     output_file.close()
 
-    print(f"Parsed {file_count} files and added {domain_count_inc}/{domain_count_inc+domain_count_exc} domains to {args.output_pathname}")
+    print(
+        f"Added {domains_included}/{file_count} "
+        f"domains to {args.output_pathname}"
+    )
 
 if __name__ == "__main__":
     main()
