@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import datetime
 
 
 INTRO_TEXT = """
@@ -86,6 +87,13 @@ def main():
 
     output_file = open(args.output_pathname, "w")
     output_file.write(INTRO_TEXT)
+    stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    output_file.write(f"# Blocklist generated: {stamp}\n#\n")
+    output_file.write(f"# Exclude categories:\n")
+    for category in excluded_categories:
+        output_file.write(f"# - {category}\n")
+        continue
+    output_file.write(f"#\n# Exclude uncategorized:\n# - {args.exclude_uncategorized}\n\n")
 
     file_list = os.scandir(args.input_directory)
 
