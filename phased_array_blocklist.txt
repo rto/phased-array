@@ -21,6 +21,19 @@
 #
 #  - https://pi-hole.net
 
+# Blocklist generated: 2020-03-12 11:17:16
+#
+# Exclude categories:
+# - Online Payment
+# - Non-tracking
+# - CDN
+# - SSO
+# - Embedded Content
+# - Federated Login
+#
+# Exclude uncategorized:
+# - True
+
 abtasty.com
 adstanding.com
 tns-counter.ru
