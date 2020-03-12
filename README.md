@@ -26,7 +26,7 @@ Setting a `--line-prefix` can be used to generate a `hosts` formatted list.
 python generate_lists.py \
     --input-directory my-tracker/domains \
     --output-pathname /path/to/my-output.txt \
-    --line-prefix '127.0.0.1 ' \
+    --destination-address '127.0.0.1' \
     --exclude-uncategorized \
     --exclude-category CDN \
     --exclude-category 'Embedded Content' \

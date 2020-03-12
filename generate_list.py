@@ -55,8 +55,8 @@ def parse_args():
         default="phased_array_blocklist.txt"
     )
     parser.add_argument(
-        "--line-prefix", "-l",
-        help="Prefix for each entry in the output file",
+        "--destination-address", "-d",
+        help="Sinkhole destination address (sets output in hosts file format)",
         default="",
     )
     parser.add_argument(
@@ -84,6 +84,7 @@ def main():
         args.exclude_categories or
         DEFAULT_EXCLUDED_CATEGORIES
     )
+    line_prefix = args.destination_address + "\t" if len(args.destination_address) > 0 else ""
 
     output_file = open(args.output_pathname, "w")
     output_file.write(INTRO_TEXT)
@@ -112,7 +113,7 @@ def main():
             continue
         domains_included += 1
         print(f"Adding: {domain}")
-        output_file.write(f"{args.line_prefix}{domain}\n")
+        output_file.write(f"{line_prefix}{domain}\n")
 
     file_list.close()
     output_file.close()
